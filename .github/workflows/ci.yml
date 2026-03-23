@@ -13,9 +13,11 @@ jobs:
       run:
         working-directory: 1-DevOps/idempotweet
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v4
       - name: node setup
-        uses: actions/setup-node
+        uses: actions/setup-node@v4
+        with:
+            node-version: '20'
       - name: enable corepack
         working-directory: .
         run: corepack enable
