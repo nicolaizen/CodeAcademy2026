@@ -29,9 +29,9 @@ jobs:
       - name: test coverage
         run: yarn test:coverage
       - name: sonar analyse
-        uses:  SonarSource/sonarcloud-github-action@v6
+        uses: SonarSource/sonarqube-scan-action@v6
         with:
           projectBaseDir: 1-DevOps/idempotweet
         env:
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
