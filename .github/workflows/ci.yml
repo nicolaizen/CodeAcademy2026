@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    paths:
-      - 1-DevOps/idempotweet/**
+    branches:
+      - main
   workflow_call:
 
 jobs:
