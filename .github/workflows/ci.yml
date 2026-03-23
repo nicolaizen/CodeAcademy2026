@@ -1,14 +1,14 @@
 name: CI
 
 on:
-  pull_request:
+  push:
     paths:
       - 1-DevOps/idempotweet/**
   workflow_call:
 
 jobs:
   ci:
-    runs-on: ${{ vars.RUNNER || 'self-hosted' }}
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: 1-DevOps/idempotweet
