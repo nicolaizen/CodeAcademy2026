@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    paths:
+      - 1-DevOps/idempotweet/**
+  workflow_call:
+
+jobs:
+  ci:
+    runs-on: ${{ vars.RUNNER || 'self-hosted' }}
+    defaults:
+      run:
+        working-directory: 1-DevOps/idempotweet
+    steps:
+      - uses: actions/checkout
+      - name: node setup
+        uses: actions/setup-node
+      - name: enable corepack
+        working-directory: .
+        run: corepack enable
+      - name: install dependencies
+        run: yarn install --immutable
+      - name: yarn test
+        run: yarn test
+      - name: test coverage
+        run: yarn test:coverage
+      - name: sonar analyse
+        uses:  SonarSource/sonarcloud-github-action@v6
+        with:
+          projectBaseDir: 1-DevOps/idempotweet
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+
